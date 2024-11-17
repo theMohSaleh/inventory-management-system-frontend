@@ -88,7 +88,7 @@ Create an .env file and add the following before starting the server
     - RETURN all ActivityLogs
   - ELSE
     - RETURN error "Unauthorized access"
-    
+
 ## Routes
 ### Item routes
 | Action | Route                                   | HTTP Verb |
@@ -105,3 +105,12 @@ Create an .env file and add the following before starting the server
 | Action | Route                                   | HTTP Verb |
 |--------|-----------------------------------------|-----------|
 | Index  | `/logs`                                 | GET       |
+
+## Screenshots
+
+![Landing Page](./src/assets/landingFigma.png)
+![Dashboard Page](./src/assets/dashboardFigma.png)
+![Listing Page](./src/assets/ListingFigma.png)
+![Form Page](./src/assets/formFigma.png)
+![Show Page](./src/assets/showFigma.png)
+![Activity Log Page](./src/assets/logFigma.png)

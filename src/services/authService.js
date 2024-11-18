@@ -1,3 +1,5 @@
+const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/dashboard`;
+
 export const signup = async (formData) => {
   try {
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/signup`, {

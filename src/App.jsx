@@ -9,6 +9,7 @@ import SignupForm from './components/SignupForm/SignupForm'
 import SigninForm from './components/SigninForm/SigninForm'
 import TestItemService from './components/TestItemService/TestItemService';
 import LogsList from './components/LogsList/LogsList';
+import LogsShow from './components/LogsShow/LogsShow';
 // Services
 import * as authService from '../src/services/authService';
 import * as itemsService from '../src/services/itemsService'
@@ -91,6 +92,7 @@ const App = () => {
                 handleRemoveItem={handleRemoveItem}
               />} />
               <Route path='/logs' element={<LogsList />} />
+              <Route path='/logs/:itemId' element={<LogsShow />} />
             </>
 
           ) : (

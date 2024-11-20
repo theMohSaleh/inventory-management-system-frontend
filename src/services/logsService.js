@@ -14,3 +14,17 @@ export const index = async () => {
         console.log(error);
     }
 }
+
+export const show = async (itemId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${itemId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        const logs = await res.json();
+        return logs;
+    } catch (error) {
+        console.log(error);
+    }
+}

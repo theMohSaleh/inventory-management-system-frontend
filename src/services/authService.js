@@ -1,13 +1,6 @@
-const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
+const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/dashboard`;
 
-const getUser = () => {
-  const token = localStorage.getItem('token');
-  if (!token) return null;
-  const user = JSON.parse(atob(token.split('.')[1]));
-  return user;
-};
-
-const signup = async (formData) => {
+export const signup = async (formData) => {
   try {
     const res = await fetch(`${BACKEND_URL}/users/signup`, {
       method: 'POST',

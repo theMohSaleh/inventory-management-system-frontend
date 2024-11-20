@@ -12,6 +12,7 @@ import LogsList from './components/LogsList/LogsList';
 import LogsShow from './components/LogsShow/LogsShow';
 import ItemList from './components/ItemList/ItemList';
 import ItemForm from './components/ItemForm/ItemForm';
+import ItemDetails from './components/ItemDetails/ItemDetails';
 
 // Services
 import * as authService from '../src/services/authService';
@@ -48,6 +49,7 @@ const App = () => {
   const handleAddItem = async (itemFormData) => {
     try {
       const newItem = await itemsService.create(itemFormData);
+      newItem.owner = newItem.owner._id; // add this line to fix issue
       setItems([...items, newItem]);
     } catch (error) {
       console.error(error);
@@ -100,8 +102,10 @@ const App = () => {
                 }
               />
               <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
-              <Route path='/logs' element={<LogsList />} />
-              <Route path='/logs/:itemId' element={<LogsShow />} />
+              <Route path="/items/:itemId/edit" element={<ItemForm handleEditItem={handleEditItem} />} />
+              <Route path="/items/:itemId" element={<ItemDetails />} />
+              <Route path="/logs" element={<LogsList />} />
+              <Route path="/logs/:itemId" element={<LogsShow />} />
 
             
             </>

@@ -37,7 +37,6 @@ const ItemForm = (props) => {
     } else {
       props.handleAddItem(formData);
     }
-    navigate('/items');
   };
 
   return (

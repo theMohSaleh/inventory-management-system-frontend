@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm'
 import SigninForm from './components/SigninForm/SigninForm'
 import TestItemService from './components/TestItemService/TestItemService';
+import LogsList from './components/LogsList/LogsList';
 // Services
 import * as authService from '../src/services/authService';
 import * as itemsService from '../src/services/itemsService'
@@ -82,13 +83,14 @@ const App = () => {
         <Routes>
           {user ? (
             <>
-              <Route path="/" element={<Dashboard user={user} />} />
+              <Route path="/" element={<Dashboard user={user} items={items} />} />
               <Route path="/test" element={<TestItemService
                 items={items}
                 handleAddItem={handleAddItem}
                 handleEditItem={handleEditItem}
                 handleRemoveItem={handleRemoveItem}
               />} />
+              <Route path='/logs' element={<LogsList />} />
             </>
 
           ) : (

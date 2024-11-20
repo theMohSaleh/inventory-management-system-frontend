@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import * as logsService from "../../services/logsService"
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 
 function LogsList() {
     const [logs, setLogs] = useState([])
@@ -30,7 +30,7 @@ function LogsList() {
     }
 
     return (
-        <ListGroup>
+        <>
             <dl>
                 {logs.map((log) => (
                     <section key={log._id}>
@@ -43,7 +43,7 @@ function LogsList() {
                     </section>
                 ))}
             </dl>
-        </ListGroup>
+        </>
     )
 }
 

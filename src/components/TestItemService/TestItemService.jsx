@@ -44,7 +44,7 @@ function TestItemService(props) {
   }
 
   const deleteItem = async () => {
-    
+    props.handleRemoveItem('673d373c411c4bd1d919b2ee');
   }
 
   return (

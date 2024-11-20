@@ -65,10 +65,11 @@ const App = () => {
     }
   }
 
-  const handleRemoveItem = async () => {
+  const handleRemoveItem = async (itemId) => {
     try {
-      const deletedItem = await itemsService.remove('673d3352411c4bd1d919b2ab');
-      setItemDeleted(deletedItem);
+      const deletedItem = await itemsService.remove(itemId);
+      const updatedItems = items.filter((item) => (item._id !== deletedItem._id))
+      setItems(updatedItems)
     } catch (error) {
       console.log(error);
     }

@@ -1,14 +1,17 @@
 // src/components/ItemDetails/ItemDetails.jsx
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as itemService from '../../services/itemsService';
 import * as logsService from '../../services/logsService';
+import { AuthedUserContext } from '../../App';
 
-const ItemDetails = () => {
+const ItemDetails = (props) => {
   const { itemId } = useParams();
+  const navigate = useNavigate();
   const [item, setItem] = useState(null);
   const [owner, setOwner] = useState(null);
   const [logs, setLogs] = useState([]);
+  const user = useContext(AuthedUserContext);
 
   // Fetch item details and owner info
   useEffect(() => {
@@ -42,6 +45,15 @@ const ItemDetails = () => {
     fetchLogs();
   }, [itemId]);
 
+  const handleDelete = async () => {
+    try {
+      await props.handleRemoveItem(itemId);
+      navigate("/items");
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
+  };
+
   if (!item) return <main>Loading...</main>;
 
   return (
@@ -56,6 +68,17 @@ const ItemDetails = () => {
         ) : (
           <p>Owner ID: {item.owner}</p>
         )}
+        <div>
+           {/* Edit and Delete Buttons - Only if the user is the owner */}
+           {user && user._id === item.owner && (
+          <>
+            <Link to={`/items/${item._id}/edit`}>
+              <button>Edit</button>
+            </Link>
+            <button onClick={handleDelete}>Delete</button>
+          </>
+        )}
+        </div>
       </header>
       <section>
         <h2>Logs</h2>

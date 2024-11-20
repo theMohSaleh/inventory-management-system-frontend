@@ -56,21 +56,24 @@ const App = () => {
     }
   };
 
-  const handleEditItem = async (itemFormData, itemId) => {
-    try {
-      const editedItem = await itemsService.update(itemFormData, itemId);
-      const updatedItems = items.map((item) => {
-        if (item._id === editedItem._id) {
-          return editedItem
-        } else {
-          return item
-        }
-      })
-      setItems(updatedItems);
-    } catch (error) {
-      console.log(error);
-    }
+ // src/App.jsx
+
+const handleEditItem = async (itemFormData, itemId) => {
+  try {
+    const editedItem = await itemsService.update(itemFormData, itemId);
+    const updatedItems = items.map((item) => {
+      if (item._id === editedItem._id) {
+        return editedItem;
+      } else {
+        return item;
+      }
+    });
+    setItems(updatedItems);
+  } catch (error) {
+    console.log(error);
   }
+};
+
 
   const handleRemoveItem = async (itemId) => {
     try {
@@ -103,7 +106,7 @@ const App = () => {
               />
               <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
               <Route path="/items/:itemId/edit" element={<ItemForm handleEditItem={handleEditItem} />} />
-              <Route path="/items/:itemId" element={<ItemDetails />} />
+              <Route path="/items/:itemId" element={<ItemDetails handleRemoveItem={handleRemoveItem} />} />
               <Route path="/logs" element={<LogsList />} />
               <Route path="/logs/:itemId" element={<LogsShow />} />
 

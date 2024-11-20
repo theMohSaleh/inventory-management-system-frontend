@@ -1,3 +1,4 @@
+// src/components/ItemForm/ItemForm.jsx
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as itemService from '../../services/itemsService';
@@ -34,8 +35,10 @@ const ItemForm = (props) => {
     evt.preventDefault();
     if (itemId) {
       props.handleEditItem(formData, itemId);
+      navigate(`/items/${itemId}`);
     } else {
       props.handleAddItem(formData);
+      navigate('/items');
     }
   };
 

@@ -7,6 +7,9 @@ Create an .env file and add the following before starting the server
 **Development:**
 ``VITE_BACKEND_URL="http://localhost:3000"``
 
+## Live Demo 🚀
+You can view the deployed website [here!](/)
+
 ## User Stories
 - As a User, I want to sign up or sign in before viewing and managing the inventory to ensure that any changes in the inventory can be tracked.
 - As a User, I want to create, read, update, and delete inventory items, so that I can efficiently manage school resources like textbooks, lab equipment, and supplies.
@@ -105,12 +108,36 @@ Create an .env file and add the following before starting the server
 | Action | Route                                   | HTTP Verb |
 |--------|-----------------------------------------|-----------|
 | Index  | `/logs`                                 | GET       |
+| Index  | `/logs/:itemId`                         | GET       |
 
-## Screenshots
-
+## Wireframe
+### Landing Page
 ![Landing Page](./src/assets/landingFigma.png)
+### Dashboard Page
 ![Dashboard Page](./src/assets/dashboardFigma.png)
+### Listing Page
 ![Listing Page](./src/assets/ListingFigma.png)
+### Form Page
 ![Form Page](./src/assets/formFigma.png)
+### Show Page
 ![Show Page](./src/assets/showFigma.png)
+### Activity Log Page
 ![Activity Log Page](./src/assets/logFigma.png)
+
+## Technologies
+- HTML
+- Javascript
+- CSS
+- React
+- JSON Web Token (JWT)
+- Express
+- MongoDB
+- Node
+- Mongoose
+- Vite
+- Restful API
+
+## Future Work
+- 
+- 
+- 

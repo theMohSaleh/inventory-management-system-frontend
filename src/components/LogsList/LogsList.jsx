@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import * as logsService from "../../services/logsService"
+import ListGroup from 'react-bootstrap/ListGroup';
+
 function LogsList() {
     const [logs, setLogs] = useState([])
 
@@ -19,8 +21,16 @@ function LogsList() {
         getLogs();
     }, [])
 
+    if (logs.length < 1) {
+        return (
+            <main>
+                No logs found.
+            </main>
+        )
+    }
+
     return (
-        <main>
+        <ListGroup>
             <dl>
                 {logs.map((log) => (
                     <section key={log._id}>
@@ -33,7 +43,7 @@ function LogsList() {
                     </section>
                 ))}
             </dl>
-        </main>
+        </ListGroup>
     )
 }
 

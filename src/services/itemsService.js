@@ -7,7 +7,20 @@ export const index = async () => {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify(),
+        });
+        const items = await res.json();
+        return items;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const show = async (itemId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${itemId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
         });
         const items = await res.json();
         return items;

@@ -40,8 +40,7 @@ function TestItemService(props) {
   }
   
   const updateItem = async () => {
-    props.handleEdittem(dummyDataUpdate, '673d3352411c4bd1d919b2ab');
-    
+    props.handleEditItem(dummyDataUpdate, '673d373c411c4bd1d919b2ee');
   }
 
   const deleteItem = async () => {

@@ -51,8 +51,15 @@ const App = () => {
 
   const handleEditItem = async (itemFormData, itemId) => {
     try {
-      const item = await itemsService.update(dummyDataUpdate, '673d3352411c4bd1d919b2ab');
-      setTestItemShow(item);
+      const editedItem = await itemsService.update(itemFormData, itemId);
+      const updatedItems = items.map((item) => {
+        if (item._id === editedItem._id) {
+          return editedItem
+        } else {
+          return item
+        }
+      })
+      setItems(updatedItems);
     } catch (error) {
       console.log(error);
     }

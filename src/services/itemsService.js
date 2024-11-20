@@ -22,6 +22,23 @@ export const show = async (itemId) => {
                 'Authorization': `Bearer ${token}`,
             },
         });
+        const item = await res.json();
+        return item;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const create = async (itemFormData) => {
+    try {
+        const res = await fetch(BASE_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(itemFormData),
+        });
         const items = await res.json();
         return items;
     } catch (error) {

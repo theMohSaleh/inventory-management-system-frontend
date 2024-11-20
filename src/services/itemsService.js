@@ -62,3 +62,18 @@ export const update = async (itemFormData, itemId) => {
         console.log(error);
     }
 }
+
+export const remove = async (itemId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${itemId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        const deletedItem = await res.json();
+        return deletedItem;
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -8,6 +8,7 @@ function TestItemService() {
   const user = useContext(AuthedUserContext);
   const [testItemShow, setTestItemShow] = useState(null)
   const [itemCreated, setItemCreated] = useState(null)
+  const [itemDeleted, setItemDeleted] = useState(null)
 
   const dummyData = {
     "name": "An Even Bigger Pen",
@@ -52,12 +53,22 @@ function TestItemService() {
     }
   }
 
+  const deleteItem = async () => {
+    try {
+      const deletedItem = await itemsService.remove('673d3352411c4bd1d919b2ab');
+      setItemDeleted(deletedItem);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <main>
       <section>
         <button onClick={getItem}>Get Item</button>
         <button onClick={createItem}>Create Item</button>
         <button onClick={updateItem}>Update Item</button>
+        <button onClick={deleteItem}>Delete Item</button>
       </section>
     </main>
   )

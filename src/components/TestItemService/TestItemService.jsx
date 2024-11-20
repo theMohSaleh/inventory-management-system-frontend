@@ -4,7 +4,7 @@ import { AuthedUserContext } from '../../App'
 
 
 
-function TestItemService() {
+function TestItemService(props) {
   const user = useContext(AuthedUserContext);
   const [testItemShow, setTestItemShow] = useState(null)
   const [itemCreated, setItemCreated] = useState(null)
@@ -36,30 +36,16 @@ function TestItemService() {
   }
   
   const createItem = async () => {
-    try {
-      const newItem = await itemsService.create(dummyData);
-      setItemCreated(newItem);
-    } catch (error) {
-      console.log(error);
-    }
+    props.handleAddItem(dummyData);
   }
-
+  
   const updateItem = async () => {
-    try {
-      const item = await itemsService.update(dummyDataUpdate, '673d3352411c4bd1d919b2ab');
-      setTestItemShow(item);
-    } catch (error) {
-      console.log(error);
-    }
+    props.handleEdittem(dummyDataUpdate, '673d3352411c4bd1d919b2ab');
+    
   }
 
   const deleteItem = async () => {
-    try {
-      const deletedItem = await itemsService.remove('673d3352411c4bd1d919b2ab');
-      setItemDeleted(deletedItem);
-    } catch (error) {
-      console.log(error);
-    }
+    
   }
 
   return (

@@ -40,6 +40,32 @@ const App = () => {
   }, [])
 
   // handle functions
+  const handleAddItem = async (itemFormData) => {
+    try {
+      const newItem = await itemsService.create(itemFormData);
+      setItems([...items, newItem]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleEditItem = async (itemFormData, itemId) => {
+    try {
+      const item = await itemsService.update(dummyDataUpdate, '673d3352411c4bd1d919b2ab');
+      setTestItemShow(item);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleRemoveItem = async () => {
+    try {
+      const deletedItem = await itemsService.remove('673d3352411c4bd1d919b2ab');
+      setItemDeleted(deletedItem);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -49,7 +75,12 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Dashboard user={user} />} />
-              <Route path="/test" element={<TestItemService items={items} />} />
+              <Route path="/test" element={<TestItemService
+                items={items}
+                handleAddItem={handleAddItem}
+                handleEditItem={handleEditItem}
+                handleRemoveItem={handleRemoveItem}
+              />} />
             </>
 
           ) : (

@@ -45,3 +45,20 @@ export const create = async (itemFormData) => {
         console.log(error);
     }
 }
+
+export const update = async (itemFormData, itemId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${itemId}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(itemFormData),
+        });
+        const item = await res.json();
+        return item;
+    } catch (error) {
+        console.log(error);
+    }
+}

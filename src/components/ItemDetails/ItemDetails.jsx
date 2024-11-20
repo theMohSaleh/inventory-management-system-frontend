@@ -20,11 +20,6 @@ const ItemDetails = (props) => {
         const itemData = await itemService.show(itemId);
         setItem(itemData);
 
-        // Fetch owner details if item is fetched successfully
-        if (itemData.owner) {
-          const ownerData = await itemService.getOwner(itemData.owner);
-          setOwner(ownerData);
-        }
       } catch (error) {
         console.error('Error fetching item details:', error);
       }
@@ -43,7 +38,7 @@ const ItemDetails = (props) => {
       }
     };
     fetchLogs();
-  }, [itemId]);
+  }, [item]);
 
   const handleDelete = async () => {
     try {
@@ -63,21 +58,17 @@ const ItemDetails = (props) => {
         <p>Description: {item.description}</p>
         <p>Quantity: {item.quantity}</p>
         <p>Category: {item.category}</p>
-        {owner ? (
-          <p>Owner: {owner.username}</p>
-        ) : (
-          <p>Owner ID: {item.owner}</p>
-        )}
+        <p>Owner: {item.owner.username}</p>
         <div>
-           {/* Edit and Delete Buttons - Only if the user is the owner */}
-           {user && user._id === item.owner && (
-          <>
-            <Link to={`/items/${item._id}/edit`}>
-              <button>Edit</button>
-            </Link>
-            <button onClick={handleDelete}>Delete</button>
-          </>
-        )}
+          {/* Edit and Delete Buttons - Only if the user is the owner */}
+          {user && user._id === item.owner._id && (
+            <>
+              <Link to={`/items/${item._id}/edit`}>
+                <button>Edit</button>
+              </Link>
+              <button onClick={handleDelete}>Delete</button>
+            </>
+          )}
         </div>
       </header>
       <section>

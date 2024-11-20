@@ -10,7 +10,9 @@ const ItemList = (props) => {
       <h1>Item List</h1>
       {props.items.map((item) => (
         <article key={item._id}>
-          <h2>{item.name}</h2>
+          <Link to={`/items/${item._id}`}>
+            <h2>{item.name}</h2>
+          </Link>
           <p>Description: {item.description}</p>
           <p>Quantity: {item.quantity}</p>
           <p>Category: {item.category}</p>

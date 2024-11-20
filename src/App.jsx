@@ -11,6 +11,7 @@ import TestItemService from './components/TestItemService/TestItemService';
 // Services
 import * as authService from '../src/services/authService';
 import * as itemsService from '../src/services/itemsService'
+import * as logsService from '../src/services/logsService'
 
 export const AuthedUserContext = createContext(null);
 
@@ -26,7 +27,7 @@ const App = () => {
   useEffect(() => {
     async function getItems() {
       try {
-        const allItems = await itemsService.index();
+        const allItems = await logsService.index();
         if (items.error) {
           throw new Error(items.error)
         }

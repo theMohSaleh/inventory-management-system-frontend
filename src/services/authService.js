@@ -1,44 +1,43 @@
-const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
+const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
 
-export const signup = async (formData) => {
+const getUser = () => {
+  const token = localStorage.getItem('token');
+  if (!token) return null;
+  const user = JSON.parse(atob(token.split('.')[1]));
+  return user;
+};
+
+const signup = async (formData) => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/signup`, {
+    const res = await fetch(`${BACKEND_URL}/users/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
     const json = await res.json();
-
-    localStorage.setItem('token', json.token)
-
-    if (json.err) {
-      throw new Error(json.err);
+    if (json.error) {
+      throw new Error(json.error);
     }
+    localStorage.setItem('token', json.token);
     return json;
   } catch (err) {
-    console.log(err);
-    throw err;
+    throw new Error(err);
   }
 };
 
-
-export const signin = async (user) => {
+const signin = async (user) => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/signin`, {
+    const res = await fetch(`${BACKEND_URL}/users/signin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     });
     const json = await res.json();
-
     if (json.error) {
       throw new Error(json.error);
     }
-
     if (json.token) {
-      // save the token to local storage
-      localStorage.setItem('token', json.token)
-
+      localStorage.setItem('token', json.token);
       const user = JSON.parse(atob(json.token.split('.')[1]));
       return user;
     }
@@ -48,13 +47,8 @@ export const signin = async (user) => {
   }
 };
 
-export const signout = () => {
+const signout = () => {
   localStorage.removeItem('token');
-}
+};
 
-export const getUser = () => {
-  const token = localStorage.getItem('token');
-  if (!token) return null;
-  const user = JSON.parse(atob(token.split('.')[1]));
-  return user;
-}
+export { signup, signin, getUser, signout };

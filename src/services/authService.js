@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/dashboard`;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 
 export const signup = async (formData) => {
   try {

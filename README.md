@@ -120,7 +120,7 @@ You can view the deployed website [here!](https://inventory-management-system-fr
 ### Form Page
 ![Form Page](./src/assets/form.png)
 ### Show Page
-![Show Page](./src/assets/item.png)
+![Show Page](./src/assets/item show.png)   
 ### Activity Log Page
 ![Activity Log Page](./src/assets/logs.png)
 

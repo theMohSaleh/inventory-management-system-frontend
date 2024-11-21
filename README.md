@@ -141,6 +141,6 @@ You can view the deployed website [here!](https://inventory-management-system-fr
 - Vercel
 
 ## Future Work
-- Assign materials to classrooms
+- Create classrooms and assign materials
 - Add user role based authentication 
-- 
+- Mobile Support

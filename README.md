@@ -8,7 +8,7 @@ Create an .env file and add the following before starting the server
 ``VITE_BACKEND_URL="http://localhost:3000"``
 
 ## Live Demo 🚀
-You can view the deployed website [here!](/)
+You can view the deployed website [here!](https://inventory-management-system-frontend-psi.vercel.app//)
 
 ## User Stories
 - As a User, I want to sign up or sign in before viewing and managing the inventory to ensure that any changes in the inventory can be tracked.
@@ -128,6 +128,7 @@ You can view the deployed website [here!](/)
 - HTML
 - Javascript
 - CSS
+- Bootstrap
 - React
 - JSON Web Token (JWT)
 - Express
@@ -136,8 +137,10 @@ You can view the deployed website [here!](/)
 - Mongoose
 - Vite
 - Restful API
+- Heroku
+- Vercel
 
 ## Future Work
-- 
-- 
-- 
+- Create classrooms and assign materials
+- Add user role based authentication 
+- Mobile Support

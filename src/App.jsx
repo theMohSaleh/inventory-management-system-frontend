@@ -18,6 +18,9 @@ import ItemDetails from './components/ItemDetails/ItemDetails';
 import * as authService from '../src/services/authService';
 import * as itemsService from '../src/services/itemsService'
 
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export const AuthedUserContext = createContext(null);
 
 const App = () => {

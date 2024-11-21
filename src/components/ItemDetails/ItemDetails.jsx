@@ -1,62 +1,97 @@
-import { useParams, Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import * as itemService from "../../services/itemService";
-import Loading from "../Loading/Loading";
-import { AuthedUserContext } from "../../App";
+// src/components/ItemDetails/ItemDetails.jsx
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import * as itemService from '../../services/itemsService';
+import * as logsService from '../../services/logsService';
+import { AuthedUserContext } from '../../App';
 
-const ItemDetails = props => {
+const ItemDetails = (props) => {
   const { itemId } = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState(null);
+  const [owner, setOwner] = useState(null);
+  const [logs, setLogs] = useState([]);
   const user = useContext(AuthedUserContext);
 
-  const [item, setItem] = useState(null);
-
+  // Fetch item details and owner info
   useEffect(() => {
     const fetchItem = async () => {
-      const itemData = await itemService.getItem(itemId);
-      setItem(itemData);
-    }
-    fetchItem();
-  },  [itemId])
+      try {
+        const itemData = await itemService.show(itemId);
+        setItem(itemData);
 
-  const handleEdit = () => {
-    props.history.push(`/items/${itemId}/edit`);
-  }
-  const handleAddToCart = async () => {
-    await itemService.addItemToCart(itemId, user._id);
-    props.history.push("/cart");
-  }
+      } catch (error) {
+        console.error('Error fetching item details:', error);
+      }
+    };
+    fetchItem();
+  }, [itemId]);
+
+  // Fetch logs related to the item
+  useEffect(() => {
+    const fetchLogs = async () => {
+      try {
+        const allLogs = await logsService.show(itemId);
+        setLogs(allLogs);
+      } catch (error) {
+        console.error('Error fetching logs:', error);
+      }
+    };
+    fetchLogs();
+  }, [item]);
 
   const handleDelete = async () => {
-    await itemService.deleteItem(itemId);
-    props.history.push("/");
-  }
-  
-  if (!item) return <Loading />
+    try {
+      await props.handleRemoveItem(itemId);
+      navigate("/items");
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
+  };
+
+  if (!item) return <main>Loading...</main>;
 
   return (
     <main>
-        <header>
-            <p>{item.category.toUpperCase}</p>
-            <h1>{item.description}</h1>
-            <p>
-                {user.username} posted on {''}
-                {new Date(item.createdAt).toLocaleDateString()}
-            </p>
-            {user._id === item.user._id && (
-                <>
-                    <Link to ={`/items/${itemId}/edit`}>Edit</Link>
-                    <button onClick={handleDelete}> Delete </button>
-                </>
-                )}
-                <button onClick={handleAddToCart}>Add item</button>
-                <button onClick={handleEdit}>Edit item</button>
-
-                <p>{item.description}</p>
-                <p>{item.price}</p>
-        </header>
-        
+      <header>
+        <h1>{item.name}</h1>
+        <p>Description: {item.description}</p>
+        <p>Quantity: {item.quantity}</p>
+        <p>Category: {item.category}</p>
+        <p>Owner: {item.owner.username}</p>
+        <div>
+          {/* Edit and Delete Buttons - Only if the user is the owner */}
+          {user && user._id === item.owner._id && (
+            <>
+              <Link to={`/items/${item._id}/edit`}>
+                <button>Edit</button>
+              </Link>
+              <button onClick={handleDelete}>Delete</button>
+            </>
+          )}
+        </div>
+      </header>
+      <section>
+        <h2>Logs</h2>
+        {logs.length > 0 ? (
+          <dl>
+            {logs.map((log) => (
+              <section key={log._id}>
+                <dt>Item:</dt>
+                <dd>{log.item}</dd>
+                <dt>Action:</dt>
+                <dd>{log.action} - {log.details}</dd>
+                <dt>Date:</dt>
+                <dd>{new Date(log.timestamp).toLocaleDateString()}</dd>
+              </section>
+            ))}
+          </dl>
+        ) : (
+          <p>No logs found for this item.</p>
+        )}
+      </section>
     </main>
-  )
-}
+  );
+};
 
 export default ItemDetails;

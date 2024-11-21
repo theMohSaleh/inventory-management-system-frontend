@@ -112,17 +112,17 @@ You can view the deployed website [here!](https://inventory-management-system-fr
 
 ## Wireframe
 ### Landing Page
-![Landing Page](./src/assets/landingFigma.png)
+![Landing Page](./src/assets/landing.png)
 ### Dashboard Page
-![Dashboard Page](./src/assets/dashboardFigma.png)
+![Dashboard Page](./src/assets/dashboard.png)
 ### Listing Page
-![Listing Page](./src/assets/ListingFigma.png)
+![Listing Page](./src/assets/itms.png)
 ### Form Page
-![Form Page](./src/assets/formFigma.png)
+![Form Page](./src/assets/form.png)
 ### Show Page
-![Show Page](./src/assets/showFigma.png)
+![Show Page](./src/assets/item.png)
 ### Activity Log Page
-![Activity Log Page](./src/assets/logFigma.png)
+![Activity Log Page](./src/assets/logs.png)
 
 ## Technologies
 - HTML
@@ -142,5 +142,5 @@ You can view the deployed website [here!](https://inventory-management-system-fr
 
 ## Future Work
 - Create classrooms and assign materials
-- Add user role based authentication 
+- Add user role-based authentication 
 - Mobile Support

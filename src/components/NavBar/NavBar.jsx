@@ -21,7 +21,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <Nav.Link as={Link} to="/logs" >Activity Logs</Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Link to="/items/new"><Button variant="primary">NEW ITEM</Button></Link>
+            <Link className='me-3' to="/items/new"><Button variant="primary">NEW ITEM</Button></Link>
             <Link to="" onClick={handleSignout}><Button variant="secondary">Sign Out</Button></Link>
           </Container>
         </Navbar>

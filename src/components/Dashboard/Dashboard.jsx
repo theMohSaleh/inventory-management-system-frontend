@@ -1,14 +1,13 @@
-// src/components/Dashboard.jsx
+import { Container } from "react-bootstrap";
 
 const Dashboard = ({ user }) => {
   return (
-    <main>
-      <h1>Welcome, {user.username}</h1>
+    <Container>
+      <h1 className="mt-3">Welcome, {user.username}</h1>
       <p>
-        This is the dashboard page where you, and only you, can see a dashboard
-        of all of your things.
+        This is a website to manage your inventory. You can add, edit and remove mateirals. As well as view change history!
       </p>
-    </main>
+    </Container>
   );
 };
 

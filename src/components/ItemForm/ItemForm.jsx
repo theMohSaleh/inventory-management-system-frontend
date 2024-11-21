@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as itemService from '../../services/itemsService';
+import Button from 'react-bootstrap/Button';
+import { Container } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 const ItemForm = (props) => {
   const { itemId } = useParams();
@@ -43,11 +46,11 @@ const ItemForm = (props) => {
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <Form onSubmit={handleSubmit}>
         <h1>{itemId ? 'Edit Item' : 'Add New Item'}</h1>
-        <label htmlFor="name-input">Name</label>
-        <input
+        <Form.Label htmlFor="name-input">Name</Form.Label>
+        <Form.Control
           required
           type="text"
           name="name"
@@ -55,16 +58,16 @@ const ItemForm = (props) => {
           value={formData.name}
           onChange={handleChange}
         />
-        <label htmlFor="description-input">Description</label>
-        <textarea
+        <Form.Label htmlFor="description-input">Description</Form.Label>
+        <Form.Control
           required
           name="description"
           id="description-input"
           value={formData.description}
           onChange={handleChange}
         />
-        <label htmlFor="quantity-input">Quantity</label>
-        <input
+        <Form.Label htmlFor="quantity-input">Quantity</Form.Label>
+        <Form.Control
           required
           type="number"
           name="quantity"
@@ -72,8 +75,8 @@ const ItemForm = (props) => {
           value={formData.quantity}
           onChange={handleChange}
         />
-        <label htmlFor="category-input">Category</label>
-        <select
+        <Form.Label htmlFor="category-input">Category</Form.Label>
+        <Form.Select
           required
           name="category"
           id="category-input"
@@ -86,10 +89,10 @@ const ItemForm = (props) => {
           <option value="Music Instruments">Music Instruments</option>
           <option value="Library Resources">Library Resources</option>
           <option value="Office Supplies">Office Supplies</option>
-        </select>
-        <button type="submit">{itemId ? 'Update Item' : 'Add Item'}</button>
-      </form>
-    </main>
+        </Form.Select>
+        <Button className='mt-3' type="submit">{itemId ? 'Update Item' : 'Add Item'}</Button>
+      </Form>
+    </Container>
   );
 };
 

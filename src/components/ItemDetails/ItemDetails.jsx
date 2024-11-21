@@ -3,13 +3,15 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as itemService from '../../services/itemsService';
 import * as logsService from '../../services/logsService';
+import { Container } from "react-bootstrap";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import { AuthedUserContext } from '../../App';
 
 const ItemDetails = (props) => {
   const { itemId } = useParams();
   const navigate = useNavigate();
   const [item, setItem] = useState(null);
-  const [owner, setOwner] = useState(null);
   const [logs, setLogs] = useState([]);
   const user = useContext(AuthedUserContext);
 
@@ -52,45 +54,57 @@ const ItemDetails = (props) => {
   if (!item) return <main>Loading...</main>;
 
   return (
-    <main>
+    <Container className='mt-2'>
       <header>
-        <h1>{item.name}</h1>
-        <p>Description: {item.description}</p>
-        <p>Quantity: {item.quantity}</p>
-        <p>Category: {item.category}</p>
-        <p>Owner: {item.owner.username}</p>
-        <div>
+        <Container>
+          <h1>{item.name}</h1>
+          <p>Description: {item.description}</p>
+          <p>Quantity: {item.quantity}</p>
+          <p>Category: {item.category}</p>
+          <p>Owner: {item.owner.username}</p>
+        </Container>
+        <Container>
           {/* Edit and Delete Buttons - Only if the user is the owner */}
           {user && user._id === item.owner._id && (
             <>
-              <Link to={`/items/${item._id}/edit`}>
-                <button>Edit</button>
+              <Link className='me-3' to={`/items/${item._id}/edit`}>
+                <Button>Edit</Button>
               </Link>
-              <button onClick={handleDelete}>Delete</button>
+              <Button onClick={handleDelete}>Delete</Button>
             </>
           )}
-        </div>
+        </Container>
       </header>
-      <section>
+      <Container className='mt-5'>
         <h2>Logs</h2>
         {logs.length > 0 ? (
-          <dl>
-            {logs.map((log) => (
-              <section key={log._id}>
-                <dt>Item:</dt>
-                <dd>{log.item}</dd>
-                <dt>Action:</dt>
-                <dd>{log.action} - {log.details}</dd>
-                <dt>Date:</dt>
-                <dd>{new Date(log.timestamp).toLocaleDateString()}</dd>
-              </section>
-            ))}
-          </dl>
+          <Container>
+            <Table bordered striped hover>
+              <thead>
+                <tr>
+                  <th>Item:</th>
+                  <th>Action:</th>
+                  <th>Details:</th>
+                  <th>Date:</th>
+                </tr>
+              </thead>
+              <tbody>
+                {logs.map((log) => (
+                  <tr key={log._id}>
+                    <td>{log.item}</td>
+                    <td>{log.action}</td>
+                    <td>{log.details}</td>
+                    <td>{log.timestamp}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Container>
         ) : (
           <p>No logs found for this item.</p>
         )}
-      </section>
-    </main>
+      </Container>
+    </Container>
   );
 };
 

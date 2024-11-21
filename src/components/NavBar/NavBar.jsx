@@ -33,7 +33,7 @@ const NavBar = ({ user, handleSignout }) => {
             <Navbar.Collapse id="basic-navbar-nav">
             </Navbar.Collapse>
             <ButtonGroup className="ms-auto">
-              <Link to="/signin"><Button variant="secondary">Sign In</Button></Link>
+              <Link to="/signin"><Button className='me-3' variant="secondary">Sign In</Button></Link>
               <Link to="/signup"><Button variant="secondary">Sign Up</Button></Link>
             </ButtonGroup>
           </Container>

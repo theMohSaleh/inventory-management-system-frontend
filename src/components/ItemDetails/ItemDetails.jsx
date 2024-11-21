@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as itemService from '../../services/itemsService';
 import * as logsService from '../../services/logsService';
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { AuthedUserContext } from '../../App';
@@ -51,7 +51,7 @@ const ItemDetails = (props) => {
     }
   };
 
-  if (!item) return <main>Loading...</main>;
+  if (!item) return <Container> Loading... <Spinner /></Container>;
 
   return (
     <Container className='mt-2'>

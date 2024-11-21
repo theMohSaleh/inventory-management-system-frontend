@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService'
+import { Form, Button, Container } from 'react-bootstrap';
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -37,13 +38,13 @@ const SignupForm = (props) => {
   };
 
   return (
-    <main>
+    <Container>
       <h1>Sign Up</h1>
       <p>{message}</p>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
-          <input
+          <Form.Label htmlFor="username">Username:</Form.Label>
+          <Form.Control
             type="text"
             id="name"
             value={username}
@@ -52,8 +53,8 @@ const SignupForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
-          <input
+          <Form.Label htmlFor="password">Password:</Form.Label>
+          <Form.Control
             type="password"
             id="password"
             value={password}
@@ -62,8 +63,8 @@ const SignupForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="confirm">Confirm Password:</label>
-          <input
+          <Form.Label htmlFor="confirm">Confirm Password:</Form.Label>
+          <Form.Control
             type="password"
             id="confirm"
             value={passwordConf}
@@ -72,13 +73,13 @@ const SignupForm = (props) => {
           />
         </div>
         <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
+          <Button className='me-3' type='submit' disabled={isFormInvalid()}>Sign Up</Button>
           <Link to="/">
-            <button>Cancel</button>
+            <Button>Cancel</Button>
           </Link>
         </div>
-      </form>
-    </main>
+      </Form>
+    </Container>
   );
 };
 

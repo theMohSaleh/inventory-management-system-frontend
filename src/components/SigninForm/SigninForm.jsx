@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService'; // import the authservice
+import { Form, Button, Container } from 'react-bootstrap';
 
 const SigninForm = (props) => {
   const navigate = useNavigate(); // added this for navigation purposes
@@ -34,13 +35,13 @@ const SigninForm = (props) => {
   };
 
   return (
-    <main>
+    <Container className='mt-3'>
       <h1>Log In</h1>
       <p>{message}</p>
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <Form autoComplete="off" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Username:</label>
-          <input
+          <Form.Label htmlFor="email">Username:</Form.Label>
+          <Form.Control
             type="text"
             autoComplete="off"
             id="username"
@@ -50,8 +51,8 @@ const SigninForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
-          <input
+          <Form.Label htmlFor="password">Password:</Form.Label>
+          <Form.Control
             type="password"
             autoComplete="off"
             id="password"
@@ -60,14 +61,14 @@ const SigninForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <button>Log In</button>
+        <Form.Group className='mt-3'>
+          <Button className='me-3' type='submit'>Log In</Button>
           <Link to="/">
-            <button>Cancel</button>
+            <Button>Cancel</Button>
           </Link>
-        </div>
-      </form>
-    </main>
+        </Form.Group>
+      </Form>
+    </Container>
   );
 };
 

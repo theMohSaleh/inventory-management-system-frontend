@@ -1,14 +1,14 @@
-// src/components/Landing.jsx
+import { Container } from "react-bootstrap";
 
 const Landing = () => {
   return (
-    <main>
-      <h1>Hello, you are on the landing page for visitors.</h1>
+    <Container>
+      <h1>Hello and Welcome to Inventory Management System!</h1>
       <h3>
         If you sign up for a new account, you will have the ability to sign in
-        and see your super secret dashboard.
+        and manage your inventory.
       </h3>
-    </main>
+    </Container>
   );
 };
 

@@ -128,6 +128,7 @@ You can view the deployed website [here!](https://inventory-management-system-fr
 - HTML
 - Javascript
 - CSS
+- Bootstrap
 - React
 - JSON Web Token (JWT)
 - Express
@@ -140,6 +141,6 @@ You can view the deployed website [here!](https://inventory-management-system-fr
 - Vercel
 
 ## Future Work
-- 
-- 
+- Assign materials to classrooms
+- Add user role based authentication 
 - 
